@@ -1,0 +1,46 @@
+{% extends 'base_html.html' %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+	<head>
+		<meta charset = "utf-8">
+		<title>Home Page</title>
+		<link rel = "stylesheet" href="{% static 'styles.css' %}">
+	</head>
+
+	<body>
+
+		{% if user.is_authenticated %}
+
+		<h1>Welcome {{user.first_name}} {{user.last_name}}!!!</h1>
+
+		<p>Here are your classes:</p>
+
+		<div class = "courses">
+			{% for course in courses %}
+				{% if course.professor == user %}
+				<div class = "course">
+					{% if not course.has_conflict %}
+						<h2><a href = "{% url 'courses:detail' slug=course.slug %}">{{course.title}}</a></h2>
+					{% else %}
+						<h2><a href = "{% url 'courses:detail' slug=course.slug %}" style ="color: red">*{{course.title}}*</a></h2>
+					{% endif %}
+					<p>{{course.snippet}}</p>
+					<p>{{course.assigned_room}}</p>
+					<p>{{course.assigned_time}}</p>
+					<p class = "professor">Taught by {{user.first_name}} {{user.last_name}}</p>
+				</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		{% else %}
+
+		<h1>Welcome to the New College Course Scheduler</h1>
+		<p>Please sign up or Login to view or add courses</p>
+		{% endif %}
+
+	</body>
+
+{% endblock %}

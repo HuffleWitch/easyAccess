@@ -1,0 +1,24 @@
+{% extends 'base_html.html' %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+<head>
+	<meta charset = "utf-8">
+	<title>Course</title>
+	<link rel = "stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+		<a href="{% url 'courses:heiser_map' %}" target="_blank" class = "mapButtons">Heiser Layout</a>
+		<a href="{% url 'courses:ace_map' %}" target="_blank" class = "mapButtons">Ace Layout</a>
+	<div class= "create-course">
+		<form class='site-form' action = '{% url "courses:create" %}' method = 'post'>
+			{% csrf_token %}
+			{{ form }}
+			<input type= "submit" value="Create">
+		</form>
+	</div>
+</body>
+
+{% endblock %}
