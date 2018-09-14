@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'djangosched.urls'
+ROOT_URLCONF = 'easyAccess.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djangosched.wsgi.application'
+WSGI_APPLICATION = 'easyAccess.wsgi.application'
 
 
 # Database
