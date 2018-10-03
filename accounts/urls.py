@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+#houses the url references to the pages connected to the account functions
 app_name = 'accounts'
 
 urlpatterns = [

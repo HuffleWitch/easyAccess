@@ -2,6 +2,7 @@ from django import forms
 from . import models
 from courses.choices import *
 
+# form that creates the course's
 class CreateCourse(forms.ModelForm):
 	class Meta:
 		model = models.Course
@@ -23,7 +24,7 @@ class CreateCourse(forms.ModelForm):
 
 
 
-
+#gives the course display page the option to filter the display of classes
 class FilterCourseList(forms.Form):
 	instructor = forms.ModelChoiceField(label='Instructor:', queryset=models.User.objects.all().order_by('username'), required=False)
 	dept = forms.ChoiceField(label='Department:', choices=DEPT_CHOICES, required=False)

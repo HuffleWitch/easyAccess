@@ -4,8 +4,10 @@ from django.conf import settings
 from courses.choices import *
 from django.core.validators import MaxValueValidator
 
-# possibly make more tables and use joins to make them save room and easier to access for the individual professor, room, ect. view
-# Create your models here.
+# possibly make more tables and use joins to make them save room and easier
+# to access for the individual professor, room, ect. view
+# creates the SQL database for the course and
+# sets up the forms to fill out
 class Course(models.Model):
 	title = models.CharField(max_length = 100)
 	decription = models.TextField()

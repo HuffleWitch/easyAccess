@@ -58,7 +58,7 @@ def translate_back(s):
 		if str(codes[code]) == s:
 			return codes[code]
 	return TimePref([TimeSlot(WeekTime(0,0,1), WeekTime(0,0,2))])
-
+# shows the list of all the courses
 # Create your views here.
 @login_required(login_url = "/accounts/login/")
 def course_list(request):
@@ -84,7 +84,7 @@ def course_list(request):
 	courses = sorted(courses, key=lambda course:translate_back(course.assigned_time).toord())
 
 	return render(request, 'courses/course_list.html', {'courses':courses, 'form':form})
-
+# shows the list of courses that each professor is offering, but only when they are logged in
 @login_required(login_url = "/accounts/login/")
 def prof_course_list(request, prof):
 	courses = Course.objects.filter(professor=User.objects.get(username=prof))
@@ -92,13 +92,14 @@ def prof_course_list(request, prof):
 	form = forms.FilterCourseList()
 
 	return render(request, 'courses/course_list.html', {'courses':courses, 'form':form})
-
+# shows the descriptions of the courses when they are clicked on
 @login_required(login_url = "/accounts/login/")
 def course_details(request, slug):
 	# return HttpResponse("This is where the description will be")
 	course = Course.objects.get(slug = slug)
 	return render(request, 'courses/course_detail.html', {'course':course})
 
+# this is the course creation page
 @login_required(login_url="/accounts/login/")
 def course_create(request):
 	if request.method == "POST":
@@ -113,6 +114,7 @@ def course_create(request):
 		form = forms.CreateCourse()
 	return render(request, 'courses/course_create.html', {'form':form})
 
+# this is the page that is displayed when the professor wants to edit their course
 @login_required(login_url = "/accounts/login/")
 def edit_course(request, slug):
 	instance = Course.objects.get(slug=slug)
@@ -136,6 +138,7 @@ def edit_course(request, slug):
 	}
 	return render(request, 'courses/edit_course.html', context)
 
+# course deletion page
 @login_required(login_url = "/accounts/login/")
 def course_delete(request, slug):
 	instance = Course.objects.get(slug=slug)

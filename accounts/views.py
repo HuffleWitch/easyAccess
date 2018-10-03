@@ -4,6 +4,9 @@ from django.contrib.auth import login, logout
 from accounts.forms import *
 
 # Create your views here.
+# these are the functionality of the pages for signing up, and logging in and out
+# this is passed to the HTML page to allow things to be displayed and to handle the buttons
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
