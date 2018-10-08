@@ -87,7 +87,7 @@ def acceptance_probability(old_cost, new_cost, T):
     Calculates the acceptance_probability of the annealing algorithm as a
     function of e^((old_cost-new_cost)/Temperature)
     """
-    return Decimal(math.e) ** Decimal((old_cost-new_cost)/T)
+    return Decimal(math.e) ** Decimal((new_cost-old_cost)/T)
 
 def mark_conflicts(solution):
     """
