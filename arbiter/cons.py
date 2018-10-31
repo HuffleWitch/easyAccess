@@ -1,9 +1,11 @@
 
-def all_cons(times):
+def all_cons(times_dict):
     """ Takes assignment and determines whether it has a room double booked """
     result = 0
-    for time in times:
-        vals = times[time]
+
+    ## Check all courses that are at the same time against each other
+    for time in times_dict:
+        vals = times_dict[time]
         i = 1
         for val in vals:
             for val2 in vals[i:]:
@@ -15,13 +17,14 @@ def all_cons(times):
                     result += 10
             i += 1
 
-    tkeys = times.keys()
+    ## Check all courses at times_dict that overlap against each other.
+    tkeys = times_dict.keys()
     j = 1
     for time in tkeys:
         for time2 in tkeys[j:]:
             if time.overlaps(time2):
-                for val in times[time]:
-                    for val2 in times[time2]:
+                for val in times_dict[time]:
+                    for val2 in times_dict[time2]:
                         if val['room'] == val2['room']:
                             result += 100
                         if val['prof'] == val2['prof']:
