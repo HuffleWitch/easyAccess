@@ -5,6 +5,7 @@ import random
 import math
 from sortedcontainers import SortedDict
 from decimal import Decimal
+from .ucs import *
 
 def initialize_times_dict(pref):
     """
@@ -60,34 +61,33 @@ def get_neighbor(solution, domains, times_dict):
     Finds a neighboring solution by picking a varible at random and changing
     its assignment to a random different value in its domain.
     """
-    var = random.choice(list(domains.keys()))
+    chosen_var = random.choice(list(domains.keys()))
+    old_val = solution[chosen_var]
+    chosen_var_dom = domains[chosen_var]
+    chosen_var_dom.remove(old_val)
 
+    if (len(chosen_var_dom) > 0):
+        neighbor = dict(solution)
+        new_val = random.choice(chosen_var_dom)
+        neighbor[chosen_var] = new_val
 
-    #print('REMOVE', '\n', solution[var]['time'], times_dict[solution[var]['time']],'\n\n', solution[var], '\n')
-    times_dict[solution[var]['time']].remove(solution[var])
+        times_dict[old_val['time']].remove(old_val)
+        times_dict[new_val['time']].append(new_val)
 
-    #print(var, var)
-    dom = domains[var]
-    #print(domains[var] == dom)
-    #print(solution[var])
-    #print(dom)
-    if len(dom)>1:
-        dom.remove(solution[var])
-    neighbor = dict(solution)
-
-    val = random.choice(dom)
-    neighbor[var] = val
-    #print('ADD', '\n', val['time'], times_dict[val['time']], '\n\n', val, '\n')
-    times_dict[val['time']].append(val)
-    dom.append(solution[var])
-    return neighbor, solution[var], val
+        chosen_var_dom.append(old_val)
+        return neighbor, old_val, new_val
+    else:
+        chosen_var_dom.append(old_val)
+        return solution, old_val, old_val
 
 def acceptance_probability(old_cost, new_cost, T):
     """
     Calculates the acceptance_probability of the annealing algorithm as a
     function of e^((old_cost-new_cost)/Temperature)
     """
-    return Decimal(math.e) ** Decimal((new_cost-old_cost)/T)
+    delta = new_cost - old_cost
+
+    return math.exp(-delta / T)
 
 def mark_conflicts(solution):
     """
@@ -112,19 +112,20 @@ def mark_conflicts(solution):
                     val2['enemies'] += "<br>"+val['name']
         i += 1
 
-def anneal_solution(solution, domains, constraints, times_dict):
+def anneal_solution(solution, domains, times_dict):
     "Uses simulated annealing to make the best possible solution"
-    old_cost = sum([constraint(times_dict) for constraint in constraints])
+    old_cost = all_cons(times_dict)
 
-    T = 1.0
-    T_min = 0.00001
+    T = 5000
+    T_min = 5
     alpha = 0.9
+
     while T > T_min:
         iterations = 0
-        while iterations < 200:
+        while iterations < 100:
 
             new_sol, was_removed, was_added = get_neighbor(solution, domains, times_dict)
-            new_cost = sum([constraint(times_dict) for constraint in constraints])
+            new_cost = all_cons(times_dict)
 
             ap = acceptance_probability(old_cost, new_cost, T)
             if ap > random.random():
@@ -146,10 +147,9 @@ def get_solution(pref):
     to anneal_solution
     """
 
-    cons = [all_cons]
     times_dict = initialize_times_dict(pref)
     domains = build_domains(pref)
 
     rand_sol = random_solution(domains, times_dict)
 
-    return anneal_solution(rand_sol, domains, cons, times_dict)
+    return anneal_solution(rand_sol, domains, times_dict)

@@ -33,5 +33,6 @@ def all_cons(times_dict):
                             result += 10
             else:
                 break
+        j += 1
 
     return result

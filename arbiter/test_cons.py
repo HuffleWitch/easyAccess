@@ -1,5 +1,6 @@
 from .cons import *
 from .ucs import *
+from .sched import *
 import pytest
 
 example_preferences = {1:{'prof':1,
@@ -16,21 +17,18 @@ example_preferences = {1:{'prof':1,
 goodass = {1:{'time':MWF9, 'room':'HNE 168', 'prof':1, 'dept':'CS', 'level':'Introductory'},
            2:{'time':MWF8, 'room':'HNE 168', 'prof':2, 'dept':'CS', 'level':'Introductory'}}
 
-def test_con_nosametimeplace():
-    badass = {1:{'time':MWF9, 'room':'HNE 168', 'prof':1}, 2:{'time':MWF9, 'room':'HNE 168', 'prof':2}}
+def test_all_cons():
+    sd = SortedDict()
+    sd[MWF8] = [{'time':MWF8, 'room':'HNE 168', 'prof':1, 'dept':'CS', 'level':'Introductory'}, {'time':MWF8, 'room':'HNE 168', 'prof':2, 'dept':'CS', 'level':'Introductory'}]
+    assert all_cons(sd) == 110
 
-    assert con_nosametimeplace(goodass) == True
-    assert con_nosametimeplace(badass) == False
+    sd[MWF8][1]['prof'] = 1
 
-def test_con_nosameproftime():
-    badass = {1:{'time':MWF8, 'room':'HNE 170', 'prof':2}, 2:{'time':MWF8, 'room':'HNE 168', 'prof':2}}
+    assert all_cons(sd) == 210
 
-    assert con_nosameproftime(goodass) == True
-    assert con_nosameproftime(badass) == False
+    sd[MWF8].remove({'time':MWF8, 'room':'HNE 168', 'prof':1, 'dept':'CS', 'level':'Introductory'})
+    sd[MWF9] = [{'time':MWF9, 'room':'HNE 168', 'prof':2, 'dept':'CS', 'level':'Introductory'}]
 
-def test_con_level():
-    badass = {1:{'time':MWF9, 'room':'HNE 170', 'prof':1, 'dept':'CS', 'level':'Introductory'},
-              2:{'time':MWF9, 'room':'HNE 168', 'prof':2, 'dept':'CS', 'level':'Introductory'}}
-
-    assert con_level(goodass) == True
-    assert con_level(badass) == False
+    print(sd)
+    print(MWF8.overlaps(MWF9))
+    assert all_cons(sd) == 0
