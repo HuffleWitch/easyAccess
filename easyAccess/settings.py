@@ -75,13 +75,17 @@ WSGI_APPLICATION = 'easyAccess.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if 'aa1nre7byiphjpz.cqj6qtfwcve9.us-east-1.rds.amazonaws.com' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ(BASE_DIR, 'db.sql'),
+            'USER': os.environ['seAWS'],
+            'PASSWORD': os.environ['Random!!'],
+            'HOST': os.environ['aa1nre7byiphjpz.cqj6qtfwcve9.us-east-1.rds.amazonaws.com'],
+            'PORT': os.environ['3306'],
+        }
     }
-}
 
 
 # Password validation
