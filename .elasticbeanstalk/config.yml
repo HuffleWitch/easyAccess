@@ -1,4 +1,6 @@
 branch-defaults:
+  deploy:
+    environment: easyenv
   master:
     environment: easyenv
     group_suffix: null

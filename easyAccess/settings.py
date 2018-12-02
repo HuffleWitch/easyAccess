@@ -75,14 +75,14 @@ WSGI_APPLICATION = 'easyAccess.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-if 'aa1nre7byiphjpz.cqj6qtfwcve9.us-east-1.rds.amazonaws.com' in os.environ:
+if 'aa11w5cnduvjt7o.cqj6qtfwcve9.us-east-1.rds.amazonaws.com' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ(BASE_DIR, 'db.sql'),
+            'NAME': os.environ['ebdb'],
             'USER': os.environ['seAWS'],
             'PASSWORD': os.environ['Random!!'],
-            'HOST': os.environ['aa1nre7byiphjpz.cqj6qtfwcve9.us-east-1.rds.amazonaws.com'],
+            'HOST': os.environ['aa11w5cnduvjt7o.cqj6qtfwcve9.us-east-1.rds.amazonaws.com'],
             'PORT': os.environ['3306'],
         }
     }
