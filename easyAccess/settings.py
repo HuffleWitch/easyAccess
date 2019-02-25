@@ -25,7 +25,7 @@ SECRET_KEY = '4vmwbl^u*f_l@)&3hk6)f9=ie8gcc%se8h-0vu3bb-0^tziim='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['easyenv.ejmahzuqh4.us-east-1.elasticbeanstalk.com', 'localhost']
+ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
@@ -75,17 +75,16 @@ WSGI_APPLICATION = 'easyAccess.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-if 'aa11w5cnduvjt7o.cqj6qtfwcve9.us-east-1.rds.amazonaws.com' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['ebdb'],
-            'USER': os.environ['seAWS'],
-            'PASSWORD': os.environ['Random!!'],
-            'HOST': os.environ['aa11w5cnduvjt7o.cqj6qtfwcve9.us-east-1.rds.amazonaws.com'],
-            'PORT': os.environ['3306'],
-        }
+#if 'aa11w5cnduvjt7o.cqj6qtfwcve9.us-east-1.rds.amazonaws.com' in os.environ:
+DATABASES = {
+    'default': {
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': os.path.join(BASE_DIR, 'db.sql'),
+        #How it worked in lite version. 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
 
 
 # Password validation
