@@ -25,7 +25,7 @@ SECRET_KEY = '4vmwbl^u*f_l@)&3hk6)f9=ie8gcc%se8h-0vu3bb-0^tziim='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['easyenv.ejmahzuqh4.us-east-1.elasticbeanstalk.com', 'localhost']
+ALLOWED_HOSTS = ['ncfcoursescheduler-env.xen3p3r4h3.us-east-2.elasticbeanstalk.com', 'localhost']
 
 
 # Application definition
