@@ -17,6 +17,9 @@ class CreateCourse(forms.ModelForm):
 				  'room3':'Third Choice Room',
 				  'cap':'Max Number of Students',
 				  'prerequisite':'Prerequisites',
+                                                          'LAC':'Request this course be considered an LAC. If yes please explain why. If no, leave this space blank.',
+                                                          'Gender_Studies':'Request this course be considered for Gender Studies',
+                                                          'Interdisciplinary':'Is this course Interdisciplinary? If yes please explain why. If no, leave this space blank.',
 				  }
 		#will add more in depth, specific fields of different types to make it easier to
 		#input time and day options.

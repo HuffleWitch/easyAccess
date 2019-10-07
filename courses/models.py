@@ -30,6 +30,7 @@ class Course(models.Model):
 	prerequisite = models.CharField(max_length = 300, blank=True)
 	term_length = models.CharField(choices = TERM_CHOICES, max_length = 30)
 	LAC = models.BooleanField(default = False)
+	#LAC = models.TextField()
 	Gender_Studies = models.BooleanField(default = False)
 	Interdisciplinary = models.BooleanField(default = False)
 

@@ -102,7 +102,7 @@ def course_details(request, slug):
 # this is the course creation page
 @login_required(login_url="/accounts/login/")
 def course_create(request):
-	if request.method == "POST":
+	if request.method == "POST": #If we get a post request, pass 
 		form = forms.CreateCourse(request.POST, request.FILES)
 		if form.is_valid():
 			instance = form.save(commit=False)
@@ -111,7 +111,7 @@ def course_create(request):
 			instance.save()
 			return redirect('courses:list')
 	else:
-		form = forms.CreateCourse()
+		form = forms.CreateCourse() #If we just go to page, get the page. 
 	return render(request, 'courses/course_create.html', {'form':form})
 
 # this is the page that is displayed when the professor wants to edit their course
