@@ -151,3 +151,4 @@ def course_delete(request, slug):
 		return redirect('courses:list')
 	else:
 		return redirect('courses:detail', slug=instance.slug)
+

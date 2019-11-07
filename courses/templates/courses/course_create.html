@@ -10,8 +10,7 @@
 </head>
 
 <body>
-		<a href="{% url 'courses:heiser_map' %}" target="_blank" class = "mapButtons">Heiser Layout</a>
-		<a href="{% url 'courses:ace_map' %}" target="_blank" class = "mapButtons">Ace Layout</a>
+		<a href="https://sites.google.com/ncf.edu/academic-map/home?authuser=1" target="_blank" class = "mapButtons">Campus Map</a>
 	<div class= "create-course">
 		<form class='site-form' action = '{% url "courses:create" %}' method = 'post'>
 			{% csrf_token %}

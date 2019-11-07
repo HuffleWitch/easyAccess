@@ -20,3 +20,5 @@ urlpatterns = [
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+#url(r'^(?P<slug>[\w-]+)/confirm_delete$', views.confirm_delete, name = 'confirm_delete'),

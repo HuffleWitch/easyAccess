@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+<head>
+	<meta charset = "utf-8">
+	<title>Confirm Delete</title>
+	<link rel = "stylesheet" href="{% static 'styles.css' %}">
+	{% if user.is_superuser or user == course.professor %}
+		<h2>Do you want to delete the course?</h2>
+		<td><a href="{% url 'courses:detail' slug=course.slug %}"><button type="button" class="btn btn-warning">Cancel</button></a></td>
+		<td><a href="{% url 'courses:delete' slug=course.slug %}"><button type="button" class="btn btn-warning">Delete</button></a></td>
+	{% endif %}
+</head>
+
+{% endblock %}
