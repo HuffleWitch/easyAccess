@@ -25,12 +25,11 @@ SECRET_KEY = '+7)oxuhdj9d5kut&886(p$onvm1l!c1jcttw^x(f)sd*up0900'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< Updated upstream
-ALLOWED_HOSTS = ['easyenv.ejmahzuqh4.us-east-1.elasticbeanstalk.com', 'localhost']
-=======
-ALLOWED_HOSTS = ['easyAcces-env.ukhj8kur3m.us-east-1.elasticbeanstalk.com', '127.0.0.1']
->>>>>>> Stashed changes
+#Old hosts:
+#ALLOWED_HOSTS = ['easyenv.ejmahzuqh4.us-east-1.elasticbeanstalk.com', 'localhost']
 
+ALLOWED_HOSTS = ['easyAcces-env.ukhj8kur3m.us-east-1.elasticbeanstalk.com', '127.0.0.1']
+#Changed 127.0.0.1 to localhost
 
 # Application definition
 
