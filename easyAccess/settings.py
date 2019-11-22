@@ -28,8 +28,8 @@ DEBUG = True
 #Old hosts:
 #ALLOWED_HOSTS = ['easyenv.ejmahzuqh4.us-east-1.elasticbeanstalk.com', 'localhost']
 
-ALLOWED_HOSTS = ['easyAcces-env.ukhj8kur3m.us-east-1.elasticbeanstalk.com', 'localhost']
-#Changed 127.0.0.1 to localhost
+ALLOWED_HOSTS = ['easyAcces-env.ukhj8kur3m.us-east-1.elasticbeanstalk.com', '127.0.0.1']
+#Changed 127.0.0.1 to localhost. UPDATE Then changed it back. 
 
 # Application definition
 
